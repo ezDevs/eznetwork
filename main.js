@@ -65,6 +65,7 @@ loginLinkedin = (oportunityId = "", oportunityTitle = "") => {
 };
 
 requestAcessTokenLinkedin = () => {
+  addEventClickImg();
   const redirectUri = `${localStorage.linkedInReactLoginRedirectUri}success`;
   const code = getQueryParameter("code");
   const oportunityId = localStorage.oportunityId;
@@ -87,4 +88,16 @@ requestAcessTokenLinkedin = () => {
 getQueryParameter = name => {
   const match = RegExp("[?&]" + name + "=([^&]*)").exec(window.location.search);
   return match && decodeURIComponent(match[1].replace(/\+/g, " "));
+};
+
+redirectHome = () => {
+  window.location.href = localStorage.linkedInReactLoginRedirectUri;
+};
+
+addEventClickImg = () => {
+  let imgTag = document.getElementById("eznetworkimg");
+
+  imgTag.addEventListener("click", function() {
+    redirectHome();
+  });
 };
